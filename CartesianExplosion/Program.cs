@@ -42,6 +42,7 @@ app.MapGet("projects/{id:int}", (int id, ApplicationDbContext context) =>
         .ThenInclude(s => s.Comments)
         .AsNoTracking()
         .Where(i => i.Id == id)
+        .AsSplitQuery()
         .ToList();
     
     return projects;
